@@ -42,7 +42,7 @@ m_red = np.delete(matrix, drop_cols, axis=1)
 print(m_red.shape)
 
 X_test = m_red[:, :-1]
-y_true = m_red[:, -1]
+y_true = m_red[:, -1] 
 
 y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_true, y_pred)
