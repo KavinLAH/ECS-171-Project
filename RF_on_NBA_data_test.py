@@ -8,11 +8,9 @@ model = load('BBALL_RF_mdl.joblib')
 df = pd.read_csv("NBA_testing.csv")
 df = df.dropna()
 
-data = df.to_numpy()
+data = df.drop(columns=["player"]).to_numpy()
 
-# data = np.loadtxt('NBA_testing.csv', delimiter = ',', skiprows=1)
-
-col_idx = 22 # compare score volume of each player
+col_idx = data.shape[1] - 1  # compare score volume of each player (last column)
 
 # generate all pair combinations of indices in the csv (comparing each player)
 n = data.shape[0]
@@ -26,11 +24,7 @@ labels = (left_rows[:,col_idx] > right_rows[:, col_idx]).astype(int)
 print("assigned labels")
 
 # creates matrix with left and right information of each player.
-matrix = np.hstack((
-    left_rows,
-    right_rows,
-    labels.reshape(-1,1)
-))
+matrix = np.hstack((left_rows, right_rows, labels.reshape(-1,1)))
 print("matrix shape:", matrix.shape)
 
 # drop score column because i dont want it as a feature. two score columns, one for each player. drop the left one, then go through all the columns and drop the other one (+c)

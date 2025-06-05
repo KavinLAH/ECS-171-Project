@@ -1,2 +1,13 @@
 /ECS171/
 BBALL_*
+
+# Python virtual environments
+venv/
+env/
+ENV/
+.venv/
+.pyenv/
+pip-selfcheck.json
+
+# VSCode Python environment settings
+.vscode/

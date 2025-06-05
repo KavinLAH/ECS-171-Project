@@ -110,7 +110,7 @@ rows_dropped = initial_rows - df_merged.shape[0]
 print(f"Dropped {rows_dropped} players who had no combine measurements recorded.")
 print(f"Final merged dataset contains {df_merged.shape[0]} players.")
 
-df_merged.drop(columns=["lg", "player", "season", "g"], inplace=True)
+df_merged.drop(columns=["lg", "season", "g"], inplace=True)
 
 print(f"# of columns in merged_df: {df_merged.columns}")
 
@@ -230,4 +230,16 @@ df_scaled = pd.DataFrame(scaled_features)
 
 df_scaled["score"] = df_scaled.sum(axis=1)
 
-df_scaled.to_csv("NBA_testing.csv")
+# Add player names to the scaled DataFrame as the first column
+if "player" in df.columns:
+    df_scaled["player"] = df["player"].values
+    # Move 'player' column to the front
+    ordered_cols = ["player",
+        'MPG_scaled', 'PPG_scaled', 'FGM_scaled', 'FGA_scaled', 'FG%_scaled', '3PM_scaled', '3PA_scaled', '3P%_scaled',
+        'FTM_scaled', 'FTA_scaled', 'FT%_scaled', 'ORB_scaled', 'DRB_scaled', 'RPG_scaled', 'APG_scaled', 'SPG_scaled',
+        'BPG_scaled', 'TOV_scaled', 'PF_scaled', 'Height_scaled', 'Weight_scaled', 'score']
+    df_scaled = df_scaled[ordered_cols]
+else:
+    print("Warning: 'player' column not found in df. Player names will not be included in NBA_testing.csv.")
+
+df_scaled.to_csv("NBA_testing.csv", index=False)

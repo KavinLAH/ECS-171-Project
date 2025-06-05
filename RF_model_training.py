@@ -18,9 +18,9 @@ from joblib import dump
 # DATA PROCESSING
 # create matrix and assign winner
 print("loading data")
-data = np.loadtxt('Training_Data.csv', delimiter = ',', skiprows=1)
+data = np.loadtxt('Training_Data.csv', delimiter = ',', skiprows=1, usecols=range(1, 22))
 
-col_idx = 22 # compare score volume of each player
+col_idx = 20 # compare score volume of each player (last column, 0-based)
 
 # generate all pair combinations of indices in the csv (comparing each player)
 n = data.shape[0]
