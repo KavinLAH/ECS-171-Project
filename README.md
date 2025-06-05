@@ -8,7 +8,7 @@ Given the lack of real 1-on-1 data, we train a model using Euroleague statistics
 Here is a Demo of our project here: [fill in the link]
 
 ## Project Description
-# Who would win in a 1-on-1 basketball game — LeBron James or Stephen Curry?
+Who would win in a 1-on-1 basketball game — LeBron James or Stephen Curry?
 This question sparks endless debates among fans, analysts, and players alike. But what if we could bring data-driven insights into the conversation?
 
 This project uses machine learning to predict the winner of a hypothetical 1v1 basketball matchup between NBA players. By analyzing key performance metrics from real-world 5v5 games, our model estimates head-to-head outcomes based on player strengths, weaknesses, and statistical tendencies.
