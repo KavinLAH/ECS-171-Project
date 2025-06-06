@@ -1,6 +1,7 @@
 from joblib import load
 import numpy as np
 import pandas as pd
+from sklearn.metrics import accuracy_score
 
 # load previously trained RF model
 model = load('BBALL_RF_mdl.joblib')
@@ -34,9 +35,9 @@ drop_cols = [col_idx, col_idx + c]
 m_red = np.delete(matrix, drop_cols, axis=1)
 print(m_red.shape)
 
-X = m_red[:, :-1]
-y = m_red[:, -1]
+X_test = m_red[:, :-1]
+y_true = m_red[:, -1] 
 
-model.fit(X, y)
-accuracy = model.score(X, y)
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_true, y_pred)
 print("Test accuracy:", accuracy)
