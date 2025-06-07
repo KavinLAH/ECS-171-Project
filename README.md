@@ -5,7 +5,12 @@ Can we use traditional 5-on-5 statistics and player attributes to predict the ou
 
 Given the lack of real 1-on-1 data, we train a model using Euroleague statistics and evaluate it on NBA players to see how well the model generalizes. Our features include performance stats (PTS, REB, STL, etc.) and physical attributes (height, weight) to create a predictive pipeline. 
 
-Here is a Demo of our project here: [fill in the link]
+### How To Run
+1. Create and activate a virtual environment (optional but highly recommended)
+2. Run 'pip install -r requirements.txt'
+3. Run 'python RF_model_training.py'
+4. Run 'python app.py'
+5. Enter player names into UI. If you are interested which players you can run, take a look at our 'NBA_testing.csv', although most current/past NBA players should be accessible.
 
 ## Project Description
 Who would win in a 1-on-1 basketball game — LeBron James or Stephen Curry?
