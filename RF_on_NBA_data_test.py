@@ -9,7 +9,8 @@ model = load('BBALL_RF_mdl.joblib')
 df = pd.read_csv("NBA_testing.csv")
 df = df.dropna()
 
-data = df.drop(columns=["player"]).to_numpy()
+df.drop(columns=["player"], inplace=True)
+data = df.to_numpy()
 
 col_idx = data.shape[1] - 1  # compare score volume of each player (last column)
 

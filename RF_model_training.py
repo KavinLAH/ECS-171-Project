@@ -15,12 +15,15 @@ from joblib import dump
 # import graphviz
 
 
+
+    
+
 # DATA PROCESSING
 # create matrix and assign winner
 print("loading data")
-data = np.loadtxt('Training_Data.csv', delimiter = ',', skiprows=1, usecols=range(1, 22))
+data = np.loadtxt('Training_Data.csv', delimiter = ',', skiprows=1, usecols=range(1, 23))
 
-col_idx = 20 # compare score volume of each player (last column, 0-based)
+col_idx = 21 # compare score volume of each player (last column, 0-based)
 
 # generate all pair combinations of indices in the csv (comparing each player)
 n = data.shape[0]

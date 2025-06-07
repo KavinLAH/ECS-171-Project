@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>1-on-1 Predictor</title>
+</head>
+<body>
+  <h1>NBA 1-on-1 Predictor</h1>
+
+  {% if error %}
+    <p style="color: red;">{{ error }}</p>
+  {% endif %}
+
+  {% if prediction %}
+    <p><strong>{{ prediction }}</strong></p>
+  {% endif %}
+
+  <form method="post">
+    <label>
+      Player 1:
+      <input type="text" name="player1" placeholder="e.g. LeBron James">
+    </label>
+    <br><br>
+    <label>
+      Player 2:
+      <input type="text" name="player2" placeholder="e.g. Stephen Curry">
+    </label>
+    <br><br>
+    <button type="submit">Who Wins?</button>
+  </form>
+</body>
+</html>
