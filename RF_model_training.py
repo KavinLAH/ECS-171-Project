@@ -2,21 +2,14 @@
 import numpy as np
 import pandas as pd
 
-# Modeling
+# RF Model
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score, ConfusionMatrixDisplay
 from sklearn.model_selection import RandomizedSearchCV, train_test_split
 from scipy.stats import randint
 
-# Tree Visualisation
-from sklearn.tree import export_graphviz
-from IPython.display import Image
 from joblib import dump
 # import graphviz
-
-
-
-    
 
 # DATA PROCESSING
 # create matrix and assign winner

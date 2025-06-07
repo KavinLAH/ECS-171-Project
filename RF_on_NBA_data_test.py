@@ -33,12 +33,19 @@ print("matrix shape:", matrix.shape)
 c = data.shape[1]
 drop_cols = [col_idx, col_idx + c]
 
+# delete the score columns
 m_red = np.delete(matrix, drop_cols, axis=1)
 print(m_red.shape)
 
+# everything but label
 X_test = m_red[:, :-1]
+
+#label
 y_true = m_red[:, -1] 
 
+# prediction
 y_pred = model.predict(X_test)
+
+# how well did it do
 accuracy = accuracy_score(y_true, y_pred)
 print("Test accuracy:", accuracy)
