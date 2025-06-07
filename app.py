@@ -8,7 +8,7 @@ app = Flask(__name__)
 # pull once so dont have to pull again. yay global variables!
 df = pd.read_csv('NBA_testing.csv').dropna()
 df['player'] = df['player'].str.lower()
-model = load('BBALL_RF_mdl.joblib')
+model = load('BBALL_LG_mdl.joblib')
 
 # accessible through the front-end
 @app.route('/', methods=['GET', 'POST'])

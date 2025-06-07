@@ -4,7 +4,7 @@ import pandas as pd
 from sklearn.metrics import accuracy_score
 
 # load previously trained RF model
-model = load('BBALL_RF_mdl.joblib')
+model = load('BBALL_LG_mdl.joblib')
 
 df = pd.read_csv("NBA_testing.csv")
 df = df.dropna()

@@ -8,7 +8,7 @@ Given the lack of real 1-on-1 data, we train a model using Euroleague statistics
 ### How To Run
 1. Create and activate a virtual environment (optional but highly recommended)
 2. Run 'pip install -r requirements.txt'
-3. Run 'python RF_model_training.py'
+3. Run 'python LogReg_model_training.py'
 4. Run 'python app.py'
 5. Enter player names into UI. If you are interested which players you can run, take a look at our 'NBA_testing.csv', although most current/past NBA players should be accessible.
 
