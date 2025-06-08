@@ -54,4 +54,4 @@ gnb.fit(X_train, y_train)
 accuracy = gnb.score(X_test, y_test)
 print("Test accuracy:", accuracy)
 
-dump(gnb, 'BBALL_RF_mdl.joblib')
+dump(gnb, 'BBALL_GNB_mdl.joblib')
