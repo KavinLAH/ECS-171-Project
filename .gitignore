@@ -11,3 +11,5 @@ pip-selfcheck.json
 
 # VSCode Python environment settings
 .vscode/
+*.pdf
+plot_generation/

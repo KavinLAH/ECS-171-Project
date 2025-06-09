@@ -2,11 +2,9 @@ from joblib import load
 import numpy as np
 import pandas as pd
 from sklearn.metrics import accuracy_score
-import matplotlib as plt
-import seaborn as sns
 
 # load previously trained RF model
-model = load('BBALL_LG_mdl.joblib')
+model = load('BBALL_GNB_mdl.joblib')
 
 df = pd.read_csv("NBA_testing.csv")
 df = df.dropna()
@@ -51,4 +49,3 @@ y_pred = model.predict(X_test)
 # how well did it do
 accuracy = accuracy_score(y_true, y_pred)
 print("Test accuracy:", accuracy)
-

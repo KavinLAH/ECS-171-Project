@@ -58,60 +58,72 @@ accuracy = rf.score(X_test, y_test)
 print("Test accuracy:", accuracy)
 
 dump(rf, 'BBALL_RF_mdl.joblib')
+# UNCOMMENT IF LOOKING TO GET INFORMATION ON FEATURE IMPORTANCE:
 
-# Feature Importance Plot
-importances = rf.feature_importances_
-# Feature names: left and right features, excluding dropped score columns
-feature_names = []
-for side in ['L', 'R']:
-    for i in range(data.shape[1]):
-        if i != col_idx:
-            feature_names.append(f'{side}{i}')
-plt.figure(figsize=(12, 6))
-indices = np.argsort(importances)[::-1]
-plt.bar(range(len(importances)), importances[indices], align='center')
-plt.xticks(range(len(importances)), np.array(feature_names)[indices], rotation=90)
-plt.xlabel('Feature')
-plt.ylabel('Importance')
-plt.title('Random Forest Feature Importances')
-plt.tight_layout()
-plt.show()
+# # Feature Importance Plot
+# importances = rf.feature_importances_
 
-# Construct df_box for boxplots
-# Indices for FG%, Height, and PPG in your data (adjust if needed)
-FG_idx = 7   # FG% index in your data
-Height_idx = 2  # Height index in your data
-PPG_idx = 17    # PPG index in your data
+# # Your 42 feature names, exactly matching len(importances)
+# feature_names = [
+#  'L_MPG','L_PPG','L_FGM','L_FGA','L_FG%','L_3PM','L_3PA','L_3P%',
+#  'L_FTM','L_FTA','L_FT%','L_ORB','L_DRB','L_RPG','L_APG','L_SPG',
+#  'L_BPG','L_TOV','L_PF','L_Height','L_Weight',
+#  'R_MPG','R_PPG','R_FGM','R_FGA','R_FG%','R_3PM','R_3PA','R_3P%',
+#  'R_FTM','R_FTA','R_FT%','R_ORB','R_DRB','R_RPG','R_APG','R_SPG',
+#  'R_BPG','R_TOV','R_PF','R_Height','R_Weight'
+# ]
 
-# For each pair, use the left player's features if label==1 (winner), else right player's features
-FG_percent = np.where(labels == 1, left_rows[:, FG_idx], right_rows[:, FG_idx])
-Height = np.where(labels == 1, left_rows[:, Height_idx], right_rows[:, Height_idx])
-PPG = np.where(labels == 1, left_rows[:, PPG_idx], right_rows[:, PPG_idx])
+# # Sort importances descending
+# indices = np.argsort(importances)[::-1]
 
-# For losers, use the other side's features
-FG_percent_loser = np.where(labels == 0, left_rows[:, FG_idx], right_rows[:, FG_idx])
-Height_loser = np.where(labels == 0, left_rows[:, Height_idx], right_rows[:, Height_idx])
-PPG_loser = np.where(labels == 0, left_rows[:, PPG_idx], right_rows[:, PPG_idx])
+# # Plot
+# plt.figure(figsize=(12, 6))
+# plt.bar(np.arange(len(importances)), importances[indices], align='center')
+# plt.xticks(np.arange(len(importances)), np.array(feature_names)[indices], rotation=90)
+# plt.xlabel('Feature')
+# plt.ylabel('Importance')
+# plt.title('Random Forest Feature Importances')
+# plt.tight_layout()
+# # plt.savefig('feature_importance.pdf', format='pdf', bbox_inches='tight')
 
-# Combine winners and losers into a DataFrame
-FG_all = np.concatenate([FG_percent, FG_percent_loser])
-Height_all = np.concatenate([Height, Height_loser])
-PPG_all = np.concatenate([PPG, PPG_loser])
-label_all = np.concatenate([np.ones_like(labels), np.zeros_like(labels)])
+# # Construct df_box for boxplots
+# # comments are non-updated !!!
+# # Indices for FG%, Height, and PPG in your data (adjust if needed)
+# FGM_idx = 2   # FG% index in your data
+# MPG_idx = 0  # Height index in your data
+# PPG_idx = 1    # PPG index in your data
 
-df_box = pd.DataFrame({'FG%': FG_all, 'Height': Height_all, 'PPG': PPG_all, 'label': label_all})
+# # For each pair, use the left player's features if label==1 (winner), else right player's features
+# FGM = np.where(labels == 1, left_rows[:, FGM_idx], right_rows[:, FGM_idx])
+# PPG = np.where(labels == 1, left_rows[:, PPG_idx], right_rows[:, PPG_idx])
+# MPG = np.where(labels == 1, left_rows[:, MPG_idx], right_rows[:, MPG_idx])
 
-# Boxplots for FG%, Height, and PPG between winners and losers
+# # For losers, use the other side's features
+# FGM_loser = np.where(labels == 0, left_rows[:, FGM_idx], right_rows[:, FGM_idx])
+# PPG_loser = np.where(labels == 0, left_rows[:, PPG_idx], right_rows[:, PPG_idx])
+# MPG_loser = np.where(labels == 0, left_rows[:, MPG_idx], right_rows[:, MPG_idx])
 
-features = ['FG%', 'Height', 'PPG']
-labels = {0: 'Loser', 1: 'Winner'}
+# # Combine winners and losers into a DataFrame
+# FGM_all = np.concatenate([FGM, FGM_loser])
+# PPG_all = np.concatenate([PPG, PPG_loser])
+# MPG_all = np.concatenate([MPG, MPG_loser])
+# label_all = np.concatenate([np.ones_like(labels), np.zeros_like(labels)])
 
-fig, axes = plt.subplots(1, 3, figsize=(18, 6))
-for idx, feature in enumerate(features):
-    sns.boxplot(x='label', y=feature, data=df_box, ax=axes[idx])
-    axes[idx].set_xticklabels([labels.get(int(l.get_text()), l.get_text()) for l in axes[idx].get_xticklabels()])
-    axes[idx].set_xlabel('Predicted Outcome')
-    axes[idx].set_ylabel(feature)
-    axes[idx].set_title(f'{feature} by Predicted Outcome')
-plt.tight_layout()
-plt.show()
+# df_box = pd.DataFrame({'FGM': FGM_all, 'PPG': PPG_all, 'MPG': MPG_all, 'label': np.concatenate([np.ones_like(labels), np.zeros_like(labels)])})
+# df_box['Outcome'] = df_box['label'].map({1: 'Winner', 0: 'Loser'})
+
+# # Boxplots for FG%, Height, and PPG between winners and losers
+
+# features = ['FGM', 'PPG', 'MPG']
+# fig, axes = plt.subplots(1, 3, figsize=(18, 6))
+
+# for ax, feat in zip(axes, features):
+#     sns.boxplot(x='Outcome', y=feat, data=df_box, ax=ax)
+#     ax.set_title(f"{feat} by Outcome")
+#     ax.set_xlabel('')
+#     ax.set_ylabel(feat)
+
+# plt.tight_layout()
+# # plt.savefig('predicted_outcome.pdf', bbox_inches='tight')
+# plt.show()
+
