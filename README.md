@@ -10,7 +10,8 @@ Given the lack of real 1-on-1 data, we train a model using Euroleague statistics
 2. Run 'pip install -r requirements.txt'
 3. Run 'python LogReg_model_training.py'
 4. Run 'python app.py'
-5. Enter player names into UI. If you are interested which players you can run, take a look at our 'NBA_testing.csv', although most current/past NBA players should be accessible.
+5. Open your browser on your device. Type in 'http://127.0.0.1:5000' or the endpoint address that is shown in the line where it says "* Running on {endpoint} into the search tab" if it does not match and press enter." It should open the UI to use our system.
+6. Enter player names into UI. If you are interested which players you can run, take a look at our 'NBA_testing.csv', although most current/past NBA players should be accessible.
 
 ## Project Description
 Who would win in a 1-on-1 basketball game — LeBron James or Stephen Curry?
@@ -27,4 +28,3 @@ Whether you're a sports analyst, a data science enthusiast, or just a basketball
 --> Support for multiple ML algorithms (Decision Tree, Random Forest, XGBoost)
 --> Feature-rich input: scoring, playmaking, shooting efficiency, size, defense
 --> Clean CLI for easy model training and prediction between any two players
-
