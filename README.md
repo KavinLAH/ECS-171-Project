@@ -25,6 +25,6 @@ Whether you're a sports analyst, a data science enthusiast, or just a basketball
 
 # Key Highlights:
 --> Real-world datasets from Euroleague (training) and NBA (testing)
---> Support for multiple ML algorithms (Decision Tree, Random Forest, XGBoost)
+--> Support for multiple ML algorithms (Decision Tree, Random Forest, Gaussian NB)
 --> Feature-rich input: scoring, playmaking, shooting efficiency, size, defense
 --> Clean CLI for easy model training and prediction between any two players
